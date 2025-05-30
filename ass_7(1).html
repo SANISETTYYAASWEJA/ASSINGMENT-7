@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASSINGMENT-7(1)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: linear-gradient(to bottom, #4cd137, #44bd32);
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .sidebar ul li:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      background-color: #f4f4f9;
+      padding: 40px;
+    }
+
+    .main h1 {
+      color: #2ecc71;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Info cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 0 100px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2ecc71;
+      margin: 10px 0 0 0;
+    }
+
+    /* Responsive tweak */
+    @media (max-width: 768px) {
+      .cards {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>School Dashboard</h2>
+    <ul>
+      <li>Dashboard</li>
+      <li>Students</li>
+      <li>Teachers</li>
+      <li>Classes</li>
+      <li>Exams</li>
+      <li>Library</li>
+      <li>Settings</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <h1>Welcome to the School Dashboard</h1>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Students</h3>
+        <p>500</p>
+      </div>
+      <div class="card">
+        <h3>Total Teachers</h3>
+        <p>50</p>
+      </div>
+      <div class="card">
+        <h3>Classes</h3>
+        <p>20</p>
+      </div>
+      <div class="card">
+        <h3>Upcoming Exams</h3>
+        <p>5</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
