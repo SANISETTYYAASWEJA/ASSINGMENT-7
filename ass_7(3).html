@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ASSINGMENT-7(3)</title>
+<style>
+    /* --- Layout --------------------------------------------------------- */
+    body{
+        margin:0;
+        font-family:Arial,Helvetica,sans-serif;
+        background:#fff;
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        padding-top:70px;
+    }
+    .calc{
+        background:#555;
+        padding:10px;
+        border-radius:3px;
+        box-shadow:0 4px 8px rgba(0,0,0,.4);
+    }
+
+    /* --- Display -------------------------------------------------------- */
+    .calc #display{
+        width:100%;
+        height:46px;
+        font-size:32px;
+        text-align:right;
+        padding:0 8px;
+        border:none;
+        outline:none;
+        border-radius:2px;
+        margin-bottom:10px;
+    }
+
+    /* --- Key grid ------------------------------------------------------- */
+    .keys{
+        display:grid;
+        grid-template-columns:repeat(4,60px);
+        grid-auto-rows:60px;
+        gap:6px;
+    }
+    button{
+        font-size:22px;
+        font-weight:bold;
+        border:none;
+        background:#27c0b4;
+        color:#fff;
+        border-radius:4px;
+        cursor:pointer;
+        transition:filter .15s;
+    }
+    button:hover{ filter:brightness(110%); }
+    button:active{ filter:brightness(90%); }
+</style>
+</head>
+<body>
+
+<div class="calc">
+    <input id="display" type="text" value="0" readonly>
+    <div class="keys">
+        <!-- first row -->
+        <button data-key="C">C</button>
+        <button data-key="%">%</button>
+        <button data-key="←">&larr;</button>
+        <button data-key="/">/</button>
+        <!-- second row -->
+        <button data-key="7">7</button>
+        <button data-key="8">8</button>
+        <button data-key="9">9</button>
+        <button data-key="*">*</button>
+        <!-- third row -->
+        <button data-key="4">4</button>
+        <button data-key="5">5</button>
+        <button data-key="6">6</button>
+        <button data-key="-">-</button>
+        <!-- fourth row -->
+        <button data-key="1">1</button>
+        <button data-key="2">2</button>
+        <button data-key="3">3</button>
+        <button data-key="+">+</button>
+        <!-- fifth row -->
+        <button data-key="00">00</button>
+        <button data-key="0">0</button>
+        <button data-key=".">.</button>
+        <button data-key="=">=</button>
+    </div>
+</div>
+
+<script>
+/* ------------------ Calculator Logic ------------------ */
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('[data-key]');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => handleKey(btn.dataset.key));
+});
+
+function handleKey(key){
+    let current = display.value;
+
+    switch(key){
+        case 'C':                 // clear
+            display.value = '0';
+            break;
+
+        case '←':                 // backspace
+            display.value = current.length > 1
+                ? current.slice(0, -1)
+                : '0';
+            break;
+
+        case '%':                 // percentage
+            display.value = (+current / 100).toString();
+            break;
+
+        case '=':                 // evaluate
+            try{
+                const result = eval(current);
+                display.value = result.toString();
+            }catch{
+                display.value = 'Error';
+            }
+            break;
+
+        default:                  // numbers / operators
+            if(current === '0' && '0123456789'.includes(key)){
+                display.value = key;           // replace leading zero
+            }else{
+                display.value = current + key; // append
+            }
+    }
+}
+</script>
+
+</body>
+</html>
